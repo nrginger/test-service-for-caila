@@ -1,21 +1,33 @@
-# mlp-python-service-template
+# ner-test-service-for-caila
 
-This repository is a project template for creating a new [Caila](https://app.caila.io/) service.
+This repository is a test named entity recogintion service for [Caila](https://app.caila.io/) based on HF ML model.
 
 > Caila is a platform for hosting microservices based on ML models.
 > It is a powerful tool that can cover every aspect of your solution’s lifecycle, from model training and QA to deployment and monitoring.
 
-[Create a new project](https://github.com/new?template_name=mlp-python-service-template&template_owner=just-ai) from this template to start developing a service of your own!
-
 ## Get started
 
 Start by getting yourself acquainted with the contents of [`main.py`](./src/main.py).
-In terms of features, this is a simple “Hello World” service:
+In terms of features, this is a service for recognition of names and surmanes (NER PER) in English texts, based on [flair/ner-english-fast model](https://huggingface.co/flair/ner-english-fast):
 
 - It has no `fit` method, so it can’t be trained.
-- Its `predict` method returns a greeting message to whatever’s passed as the `name` in the request body.
+- Its `predict` method returns a list of names and surnames found in the text of the query.
 
 The service relies on the Caila [Python SDK](https://github.com/just-ai/mlp-python-sdk) to expose its functionality to the platform.
+
+## Get API token on Hugging Face
+
+To run this service locally you do not need an API token, the model will be installed on your computer in the cache.
+
+See [How to use the model](https://huggingface.co/flair/ner-english-fast/blob/main/README.md#demo-how-to-use-in-flair).
+
+To run this service on [Caila](https://app.caila.io/) platform:
+
+- Sign in [Hugging Face](https://huggingface.co/) or sign up for a new account.
+  
+- Go to **Your profile** --> **Access Tokens**.
+
+- Click **Create new token**.
 
 ## Build Docker image
 
@@ -45,10 +57,29 @@ You will need this URL to configure your service in Caila.
 4. On the image description page, select *Create service*. Provide the service name and leave the other settings at their defaults.
 5. You should now see your service in the *Services* tab. Go to its details page and select *Diagnostics*.
 6. Select *Add instance*. Wait for the instance to start (the status indicator should turn from yellow to green).
-7. Go to the *Testing* and try sending a request with a JSON body like `{"name": "John Doe"}`.
+7. Go to the *Testing* and try sending a request with a JSON body like 
+'{
+  "text": "Pushkin was born into the Russian nobility in Moscow. His father, Sergey Lvovich Pushkin, belonged to an old noble family. One of his maternal great-grandfathers was Major-General Abram Petrovich Gannibal, a nobleman of African origin who was kidnapped from his homeland by the Ottomans, then freed by the Russian Emperor and raised in the Emperor's court household as his godson."
+}'.
 
-If you see `{"response": "Hello, John Doe!"}` in the output, congratulations!
+If you see response
+`{
+  "person_names": [
+    "Pushkin",
+    "Sergey Lvovich Pushkin",
+    "MajorGeneral Abram Petrovich Gannibal"
+  ]
+}` 
+
+in the output, congratulations!
 Your service is up and running.
+
+{% note %}
+
+If your service is not working try deleting and iserting spaces after dots manually or improve preprocessing of the text in [`main.py`](./src/main.py).
+Also note, that there is a limit of the query size: 1000 characters.
+
+{% endnote %}
 
 If you would like to learn more about Caila, check out our official [documentation](https://docs.caila.io/).
 
