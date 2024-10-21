@@ -58,9 +58,9 @@ You will need this URL to configure your service in Caila.
 5. You should now see your service in the *Services* tab. Go to its details page and select *Diagnostics*.
 6. Select *Add instance*. Wait for the instance to start (the status indicator should turn from yellow to green).
 7. Go to the *Testing* and try sending a request with a JSON body like 
-'{
+`{
   "text": "Pushkin was born into the Russian nobility in Moscow. His father, Sergey Lvovich Pushkin, belonged to an old noble family. One of his maternal great-grandfathers was Major-General Abram Petrovich Gannibal, a nobleman of African origin who was kidnapped from his homeland by the Ottomans, then freed by the Russian Emperor and raised in the Emperor's court household as his godson."
-}'.
+}`.
 
 If you see response
 `{
@@ -74,12 +74,10 @@ If you see response
 in the output, congratulations!
 Your service is up and running.
 
-{% note %}
-
-If your service is not working try deleting and iserting spaces after dots manually or improve preprocessing of the text in [`main.py`](./src/main.py).
-Also note, that there is a limit of the query size: 1000 characters.
-
-{% endnote %}
+   ---
+   **Note:** If your service is not working try deleting and iserting spaces after dots manually or improve preprocessing of the text in [`main.py`](./src/main.py).
+   Also note, that there is a limit of the query size: 1000 characters.
+   --- 
 
 If you would like to learn more about Caila, check out our official [documentation](https://docs.caila.io/).
 
