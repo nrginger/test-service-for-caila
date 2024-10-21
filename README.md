@@ -74,10 +74,8 @@ If you see response
 in the output, congratulations!
 Your service is up and running.
 
-   ---
-   **Note:** If your service is not working try deleting and iserting spaces after dots manually or improve preprocessing of the text in [`main.py`](./src/main.py).
+ℹ️ If your service is not working try deleting and iserting spaces after dots manually or improve preprocessing of the text in [`main.py`](./src/main.py).
    Also note, that there is a limit of the query size: 1000 characters.
-   --- 
 
 If you would like to learn more about Caila, check out our official [documentation](https://docs.caila.io/).
 
