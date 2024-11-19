@@ -25,9 +25,9 @@ To run this service on [Caila](https://app.caila.io/) platform:
 
 - Sign in [Hugging Face](https://huggingface.co/) or sign up for a new account.
   
-- Go to **Your profile** --> **Access Tokens**.
+- Go to *Your profile* --> *Access Tokens*.
 
-- Click **Create new token**.
+- Click *Create new token*.
 
 ## Build Docker image
 
